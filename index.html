@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Trio Suite</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0"
+  }
+}
+</script>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Main Menu View -->
+        <section id="menu-view" class="view active">
+            <header>
+                <h1>Gemini Trio Suite</h1>
+                <p>Three powerful mini-tools powered by Google's Gemini AI.</p>
+            </header>
+            
+            <div class="card-grid">
+                <!-- Card 1: Joke -->
+                <div class="card menu-card" onclick="app.showView('joke-view')">
+                    <div class="icon-box amber">😂</div>
+                    <h3>AI Joke Generator</h3>
+                    <p>Need a quick laugh? Generate witty, clean jokes instantly.</p>
+                    <span class="link-text text-amber">Open Tool &rarr;</span>
+                </div>
+
+                <!-- Card 2: Quiz -->
+                <div class="card menu-card" onclick="app.showView('quiz-view')">
+                    <div class="icon-box indigo">🧠</div>
+                    <h3>Quiz Helper</h3>
+                    <p>Test your knowledge. Generate Q&A on any topic you choose.</p>
+                    <span class="link-text text-indigo">Open Tool &rarr;</span>
+                </div>
+
+                <!-- Card 3: Affirmation -->
+                <div class="card menu-card" onclick="app.showView('affirmation-view')">
+                    <div class="icon-box rose">✨</div>
+                    <h3>Daily Affirmation</h3>
+                    <p>Start your day right with a positive, AI-generated affirmation.</p>
+                    <span class="link-text text-rose">Open Tool &rarr;</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 1: AI Joke Generator -->
+        <section id="joke-view" class="view hidden">
+            <div class="card content-card">
+                <div class="card-header">
+                    <button class="back-btn" onclick="app.showView('menu-view')">&larr;</button>
+                    <div class="header-title">
+                        <span class="icon">😂</span>
+                        <h2>AI Joke Generator</h2>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <p class="description">Need a laugh? Click the button below and let Gemini tickle your funny bone.</p>
+                    
+                    <button id="btn-joke" class="btn btn-primary">Tell me a Joke</button>
+
+                    <div id="joke-output" class="output-box hidden">
+                        <p id="joke-text"></p>
+                    </div>
+                    <p id="joke-loading" class="loading-text hidden">Thinking...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 2: Quiz Helper -->
+        <section id="quiz-view" class="view hidden">
+            <div class="card content-card">
+                <div class="card-header">
+                    <button class="back-btn" onclick="app.showView('menu-view')">&larr;</button>
+                    <div class="header-title">
+                        <span class="icon">🧠</span>
+                        <h2>Quiz Helper</h2>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="input-group">
+                        <label for="quiz-topic">Enter a Topic</label>
+                        <input type="text" id="quiz-topic" placeholder="e.g., Photosynthesis, World War II">
+                    </div>
+
+                    <button id="btn-quiz" class="btn btn-secondary">Generate Quiz Q&A</button>
+                    <p id="quiz-error" class="error-text hidden"></p>
+
+                    <!-- Quiz Output -->
+                    <div id="quiz-container" class="hidden">
+                        <div class="quiz-box question-box">
+                            <span class="label text-indigo">Question</span>
+                            <p id="quiz-question"></p>
+                        </div>
+
+                        <div id="quiz-answer-box" class="quiz-box answer-box hidden">
+                            <span class="label text-green">Answer</span>
+                            <p id="quiz-answer"></p>
+                        </div>
+
+                        <button id="btn-reveal" class="btn-link">Reveal Answer</button>
+                    </div>
+                    <p id="quiz-loading" class="loading-text hidden">Generating Question...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project 3: Daily Affirmation -->
+        <section id="affirmation-view" class="view hidden">
+            <div class="card content-card">
+                <div class="card-header">
+                    <button class="back-btn" onclick="app.showView('menu-view')">&larr;</button>
+                    <div class="header-title">
+                        <span class="icon">✨</span>
+                        <h2>Daily Affirmation</h2>
+                    </div>
+                </div>
+
+                <div class="card-body centered-body">
+                    <div id="affirmation-container" class="affirmation-card">
+                        <span class="quote-mark top">“</span>
+                        <p id="affirmation-text">Loading your daily inspiration...</p>
+                        <span class="quote-mark bottom">“</span>
+                    </div>
+
+                    <button id="btn-affirmation" class="btn btn-outline">New Affirmation</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Main Logic Script -->
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

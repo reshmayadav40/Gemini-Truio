@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Trio Suite",
+  "description": "A suite of three AI-powered mini-tools: Joke Generator, Quiz Helper, and Daily Affirmations, powered by Google Gemini.",
+  "requestFramePermissions": []
+}
