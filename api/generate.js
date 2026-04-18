@@ -19,9 +19,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
+// Favicon placeholder
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 // Generic AI completion helper with Fallback
 async function getAIResponse(prompt) {
-  const modelsToTry = ["gemini-1.5-flash", "gemini-2.5-flash"];
+  const modelsToTry = [
+    "gemini-1.5-flash", 
+    "gemini-1.5-flash-8b",
+    "gemini-2.0-flash", 
+    "gemini-2.0-flash-exp", 
+    "gemini-1.5-pro",
+    "gemini-2.5-flash"
+  ];
   let lastError = null;
 
   for (const modelName of modelsToTry) {
@@ -33,7 +43,6 @@ async function getAIResponse(prompt) {
       return response.text();
     } catch (error) {
       lastError = error;
-      // If it's an expiration error, don't bother trying other models
       if (error.message.includes("API key expired")) throw error;
       console.warn(`${modelName} failed: ${error.message}`);
       continue;
@@ -70,3 +79,5 @@ app.post("/api/generate", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+module.exports = app;
