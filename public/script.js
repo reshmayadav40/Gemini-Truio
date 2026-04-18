@@ -21,7 +21,7 @@ window.app = {
 // ---- UNIVERSAL API CALL TO BACKEND ----
 async function getAIResponse(prompt) {
     try {
-        const response = await fetch('/api/generate', {
+        const response = await fetch('https://gemini-truio.onrender.com/api/generate', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
